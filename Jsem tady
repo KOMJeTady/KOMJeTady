@@ -1,0 +1,30 @@
+pragma solidity >0.7.0 <0.8.0;
+
+contract Komjetady {
+    address public seller;
+    address public buyer;
+    mapping ( address => unit) public balance;
+    
+    event ListItem(address seller,uint price);
+    event PurchasedItem(address seller, address buyer, uint price);
+    enum Statetype {
+          ItemAvailable,
+          ItemPurchased
+    }
+    
+    StateType public State;
+    
+    contructor() Public {
+       seller = msg.sender;
+       State= StateType.ItemAvailable;
+    }
+    
+    Function buy(addresse seller,address buyer, uint price) public payable {
+        require( price<= balances[buyer], "Insufficient balance");
+        State = StateType,ItemPurchased;
+        Balances[Buyer]-= price;
+        Balances[seller]+= price;
+        
+        emit PurchasedItem(seller,buyer,msg,value);
+    }
+}
